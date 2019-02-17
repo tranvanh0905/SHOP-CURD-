@@ -355,7 +355,7 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
 						<label>Tên tài khoản : </label>
                         <div class="bor8 m-b-20 how-pos4-parent">       
                                 <i class="fas fa-user how-pos4 pointer-none"></i>
-								<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="name" placeholder="Tên tài khoản" > 
+								<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" id="userInput" name="name" placeholder="Tên tài khoản" > 
 						</div>
 						<label for="name" generated="true"  class="error"></label>
 						<span style="color: red"><?php
@@ -672,6 +672,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         required: true,
                         maxlength: 50,
 						regex: /^[a-zA-Z0-9]+$/,
+						remote:{
+							url: './checkUser',
+							type: 'post',
+							data: {
+								email: function(){
+									return $( "#userInput" ).val()
+									}
+								}
+							}
                     },
                     password: {
 						required: true,
@@ -705,6 +714,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         required: "* Vui lòng nhập tên tài khoản",
                         maxlength: "* Tài khoản phải ít hơn 50 ký tự",
 						regex: "* Tài khoản không được chứa ký tự đặc biệt",
+						remote: "* Tài khoản đã được sử dụng",
                     },
                     password: {
 						required: "* Vui lòng nhập mật khẩu",
@@ -722,7 +732,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 						required: "* Vui lòng nhập email",
                         maxlength: "* Tài khoản phải ít hơn 100 ký tự",
 						regex: "* Email không hợp lệ",
-						remote: "trung",
+						remote: "* Email đã được sử dụng",
 					}
                 },
             });

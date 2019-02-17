@@ -40,6 +40,10 @@ switch($url){
         $ctr = new UserController();
         echo $ctr->checkEmail();
         break;
+    case "checkUser":
+        $ctr = new UserController();
+        echo $ctr->checkUser();
+        break;
     case "update-user":
         $ctr = new UserController();
         echo $ctr->updateUser();

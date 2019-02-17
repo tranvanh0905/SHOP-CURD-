@@ -24,8 +24,17 @@ class UserController
     // function checkEmail and checkUserName
     public function checkEmail(){
         extract($_POST);
-        $emailCheck = User::where("email","=",$email)->first();
+        $emailCheck = User::where("email","=",$email)->get();
         if($emailCheck != false){
+            echo(json_encode(false));
+        }else{
+            echo(json_encode(true));
+        }
+    }
+    public function checkUser(){
+        extract($_POST);
+        $userCheck = User::where("name","=",$name)->get();
+        if($userCheck != false){
             echo(json_encode(false));
         }else{
             echo(json_encode(true));
