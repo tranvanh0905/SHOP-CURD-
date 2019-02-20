@@ -13,7 +13,7 @@ switch($url){
         break;
     case "san-pham":
         $ctr = new ProductController();
-        echo $ctr->product();
+        echo $ctr->productPage();
         break;
     case "dang-nhap-tai-khoan":
         $ctr = new UserController();
@@ -51,6 +51,10 @@ switch($url){
     case "remove":
         $ctr = new ProductController();
         echo $ctr->remove();
+        break;
+    case "removeCheckbox":
+        $ctr = new ProductController();
+        echo $ctr->removeProductCheckbox();
         break;
     case "admin":
         $ctr = new HomeController();

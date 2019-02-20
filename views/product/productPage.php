@@ -60,10 +60,12 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
 	font-family: 'Noto Serif', serif;
 	font-weight:bold;
 }
+
 </style>
 </head>
 <body class="animsition">
-	
+<div class="paginate light-theme simple-pagination">
+                    </div>
 	<!-- Header -->
 	<header class="header-v4">
 		<!-- Header desktop -->
@@ -346,9 +348,6 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
 
 
 	<!-- Title page -->
-
-
-
 	<!-- Content page -->
 	<section class="bg0 p-t-62 p-b-60">
 		<div class="container">
@@ -399,21 +398,20 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
 								</div>
 							</div>
 						</div>
-					<?php endforeach; ?>
+						<?php endforeach; ?>
 		
 						<!-- Pagination -->
 						<div class="flex-l-m flex-w w-full p-t-10 m-lr--7">
+						<!-- 
 							<a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">
-								1
 							</a>
-
-							<a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7">
-								2
-							</a>
+						-->
+						<div id="data-container">
+						</div>
+						<div id="pagination-container"></div>
 						</div>
 					</div>
 				</div>
-
 				<div class="col-md-4 col-lg-3 p-b-80">
 					<div class="side-menu">
 						<div class="bor17 of-hidden pos-relative">
@@ -811,6 +809,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</script>
 <!--===============================================================================================-->
 	<script src="public/js/main.js"></script>
-
+	<script src="public/js/pagination.js"></script>
+	<script>
+$(function() {
+  $("#id_paginator").pagination({
+    items: 100,
+    itemsOnPage: 3,
+    cssStyle: 'light-theme'
+  });
+});
+</script>
 </body>
 </html>

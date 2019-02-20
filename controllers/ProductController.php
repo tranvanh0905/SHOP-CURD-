@@ -55,6 +55,26 @@ class ProductController
         }
         include_once './views/product/productPage.php';
     }
+    // public function pagination()
+    // {
+    //     global $baseUrl;
+    //     $category = Category::all()->get();
+    //     $product = Product::all()->get();
+    //     $limit = 5;
+    //     $total_records = count($product);
+    //     $total_page = ceil($total_records / $limit);
+    // }
+    public function productPage()
+    {
+        $pageNumber = isset($_GET['page']) == true ? $_GET['page'] : 1;
+        $pageSize = 3;
+        $offset = ($pageNumber-1)*$pageSize;
+        $product = Product::all()->limit($offset)->get();
+        $category = Category::all()->get();
+        $total_records = count($product);
+        $total_page = ceil($total_records / $offset);
+        include_once './views/product/productPage.php';
+    }
     public function productAdmin()
     {
         global $baseUrl;
@@ -62,12 +82,14 @@ class ProductController
         $product = Product::all()->get();
         include_once './views/admin/product/productPage.php';
     }
+
     public function productAddPage()
     {
         global $baseUrl;
         $category = Category::all()->get();
         include_once './views/admin/product/addProduct.php';
     }
+    
     public function productUpdatePage(){
         global $baseUrl;
         $id = $_GET['id'];
@@ -75,6 +97,7 @@ class ProductController
         $category = Category::all()->get();
         include_once './views/admin/product/updateProduct.php';
     }
+
     public function updateProduct()
     {
         $model = Product::where('id', '=', $_POST['id'])->first();
@@ -107,7 +130,16 @@ class ProductController
         Category::rawQuery($sqlQuery);
         header('location: ./admin/san-pham');
     }
-}
+    //remove checkbox
+    public function removeProductCheckbox()
+    {
+        extract($_POST);
+        foreach($checkboxProduct as $item){
+            Product::delete($item);
+        }
+        header("location:./admin/san-pham");
+        }
+    }
 
 
 ?>

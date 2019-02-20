@@ -21,7 +21,7 @@ class UserController
         global $baseUrl;
         include './views/admin/user/addUser.php';
     }
-    // function checkEmail and checkUserName
+    // function checkEmail 
     public function checkEmail(){
         extract($_POST);
         $emailCheck = User::where("email","=",$email)->get();
@@ -31,6 +31,7 @@ class UserController
             echo(json_encode(true));
         }
     }
+    // function checkUser
     public function checkUser(){
         extract($_POST);
         $userCheck = User::where("name","=",$name)->get();

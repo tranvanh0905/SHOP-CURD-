@@ -257,7 +257,7 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                     <div class="row">
                             <div class="col-md-12">
                                 <!-- DATA TABLE -->
-                                <h3 class="title-5 m-b-35">Danh Mục</h3>
+                                <h3 class="title-5 m-b-35">SẢN PHẨM</h3>
                                 <div class="table-data__tool">
                                     <div class="table-data__tool-left">
                                         <div class="rs-select2--light rs-select2--md">
@@ -289,6 +289,7 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                                     <table class="table table-data2">
                                         <thead style="text-align:center;">
                                             <tr>
+                                                <th></th>
                                                 <th>Tên sản phẩm</th>
                                                 <th>Ảnh sản phẩm</th>
                                                 <th>Loại sản phẩm</th>
@@ -301,8 +302,13 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        <form method="POST" action="<?= $baseUrl ."removeCheckbox" ?>">
+
                                             <?php foreach($product as $item): ?>
                                             <tr class="tr-shadow" style="text-align:center;">
+                                                <td>
+                                                <input type="checkbox" name="checkboxProduct[]" class="chkitem" value="<?= $item->id ?>">
+                                                </td>
                                                 <td class="desc" style="vertical-align:middle;"> <?= $item->name; ?></td>
                                                 <td>
                                                     <img width="50" src="../<?= $item->image ?>" alt="">
@@ -322,7 +328,6 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                                                         <a linkUrl="<?php echo $baseUrl ."remove?id=" .$item->id ?>" onclick="removeProduct(this)" href="javascript:;" ><button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                             <i class="zmdi zmdi-delete"></i>
                                                         </button></a>
-                                                    
                                                     </div>
                                                 </td>
                                             </tr>
@@ -330,6 +335,14 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                                             <?php endforeach; ?>
                                         </tbody>
                                     </table>
+                                    <input style="border-radius:2px;border:1px solid #bbb;
+												background:#fff;width:15px;
+												height:14px;margin-left:7px;" type="checkbox" class="checkall">		
+                                        <button
+                                         onclick="return removeProductCheck(this)" id="clickHidden" class="btn btn-primary" name="deleteChoose">Xóa những mục đã chọn</button>
+                                </form>
+                                   
+                                </a>
                                 </div>
                                 <!-- END DATA TABLE -->
                             </div>
@@ -374,6 +387,8 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
 
     <!-- Main JS-->
     <script src="../public/adminStyle/js/main.js"></script>
+
+    <!-- Confirm Delete -->
     <script>
         function removeProduct(el){
             var url = el.getAttribute('linkUrl');
@@ -382,7 +397,25 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                 window.location.href = url;
             }
         }
+        function removeProductCheck(el){
+            var conf = confirm('Bạn chắc chắn muốn xóa không?');
+            if(conf == true){
+                return true;
+            }else{
+                return false;
+            }
+        }
     </script>
+    <!-- Checkbox Delete -->
+    <script type="text/javascript">
+    $(function(){
+        /*Check & uncheck all*/
+        $(document).on('change', '.checkall', function(){
+            var $_this = $(this);
+            $('.chkitem').prop('checked', $_this.prop('checked'));
+        });
+    });
+</script>
 </body>
 
 </html>

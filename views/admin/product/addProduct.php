@@ -366,7 +366,7 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                                     
                                     <div class="card-footer">
                                         <button onclick="validate()" class="btn btn-primary btn-sm">
-                                            <i class="fa fa-dot-circle-o"></i> Thêm
+                                            <i class="fa fa-dot-circle-o"></i> Thêm sản phẩm
                                         </button>
                                         
                                     </div>
@@ -445,7 +445,7 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                     },
                     detail:{
                         required: true,
-                    }
+                    },
                 },
                 messages:{
                     name: {
@@ -463,7 +463,7 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                     },
                     detail:{
                         required: "* Vui lòng nhập chi tiết sản phẩm",
-                    }
+                    },
                 }
             });
         })

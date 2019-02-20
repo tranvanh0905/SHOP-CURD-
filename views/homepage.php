@@ -106,7 +106,7 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
 								
 							</li>
 							<li>
-								<a href="<?= $baseUrl . "san-pham" ?>">Sản phẩm</a>
+								<a href="<?= $baseUrl . "san-pham?page=1" ?>">Sản phẩm</a>
 							</li>	
 							<li>
 								<a href="contact.html">Thông tin về chúng tôi</a>
