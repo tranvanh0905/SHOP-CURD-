@@ -295,9 +295,7 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                                                 <th>Loại sản phẩm</th>
                                                 <th>Ngày khởi tạo</th>
                                                 <th>Ngày cập nhật</th>
-                                                
                                                 <th>Lượt xem</th>
-                                                
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -307,7 +305,7 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                                             <?php foreach($product as $item): ?>
                                             <tr class="tr-shadow" style="text-align:center;">
                                                 <td>
-                                                <input type="checkbox" name="checkboxProduct[]" class="chkitem" value="<?= $item->id ?>">
+                                                <input type="checkbox" name="checkboxProduct[]" style="height:20px;width:20px;vertical-align:middle;" class="chkitem" value="<?= $item->id ?>">
                                                 </td>
                                                 <td class="desc" style="vertical-align:middle;"> <?= $item->name; ?></td>
                                                 <td>

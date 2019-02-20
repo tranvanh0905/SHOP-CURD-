@@ -357,7 +357,7 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                                 <i class="fas fa-user how-pos4 pointer-none"></i>
 								<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" id="userInput" name="name" placeholder="Tên tài khoản" > 
 						</div>
-						<label for="name" generated="true"  class="error"></label>
+						<label for="userInput" generated="true" id="userInput-error" class="error"></label>
 						<span style="color: red"><?php
 						if(isset($_GET['msgUser'])){
 							echo $_GET['msgUser'];

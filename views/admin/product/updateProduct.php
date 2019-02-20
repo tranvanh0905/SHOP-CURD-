@@ -272,60 +272,6 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                 </div>
             </header>
             <?php endif; ?>
-        <!-- END MENU SIDEBAR-->
-
-        <!-- PAGE CONTAINER-->
-        <div class="page-container">
-            <!-- HEADER DESKTOP-->
-            <header class="header-desktop">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="header-wrap">
-                            <form class="form-header" action="" method="POST">
-                            </form>
-                            <div class="header-button">
-                                <div class="noti-wrap">
-                                   
-                                </div>
-                                <div class="account-wrap">
-                                    <div class="account-item clearfix js-item-menu">
-                            
-                                        <div class="content">
-                                            <a class="js-acc-btn" href="#">john doe</a>
-                                        </div>
-                                        <div class="account-dropdown js-dropdown">
-                                            <div class="info clearfix">
-                                               
-                                                <div class="content">
-                                                    <h5 class="name">
-                                                        <a href="#">john doe</a>
-                                                    </h5>
-                                                    <span class="email">johndoe@example.com</span>
-                                                </div>
-                                            </div>
-                                            <div class="account-dropdown__body">
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-account"></i>Account</a>
-                                                </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
-                                                </div>
-                                               
-                                            </div>
-                                            <div class="account-dropdown__footer">
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
             <!-- HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
@@ -334,7 +280,7 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                     <div class="container-fluid">
                     <div class="card">
                                     <div class="card-header">
-                                        <strong>THÊM</strong> SẢN PHẨM
+                                        <strong>THAY ĐỔI</strong> SẢN PHẨM
                                     </div>
             <!-- FORM ADD PRODUCT -->
                                     <form action="<?= $baseUrl ."updateProduct" ?>" id="addProductForm" enctype="multipart/form-data" method="post" class="" novalidate>
@@ -376,9 +322,11 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                                                 <input type="text" id="numberChoose" style="border:1px solid gray">
                                                 <button onclick="addSizeNumberCheckBox()" type="button">Thêm kích cỡ</button>
                                                 </div>
+
                                                 <br>
                                                 <label class=" form-control-label">Màu sản phẩm :</label>
                                                 <div id="boxCheckBox2" >
+
                                                 <?php $colorCut = explode(',',$model->color);
                                                 for($i = 0; $i<count($colorCut);$i++){
                                                 ?>
@@ -389,24 +337,18 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                                                 <input type="text" id="nameColor" style="border:1px solid gray">
                                                 <button onclick="addColorCheckBox()" type="button">Thêm loại màu</button>
                                                 </div>
+
                                                 <br>
                                                 <label class=" form-control-label">Giá sản phẩm: </label>
                                                 <input value="<?= $model->price; ?>" type="number" name="price" class="form-control">
                                                 <br>
                                                 <label class=" form-control-label">Mô tả ngắn: </label>
-                                                <textarea name="short_desc"><?= $model->short_desc; ?></textarea>
-                                                <script>
-                                                        CKEDITOR.replace( 'short_desc' );
-                                                </script>
+                                                <textarea name="short_desc" class="form-control" style="height:200px;"><?= $model->short_desc; ?></textarea>
                                                 <br>
                                                 <label class=" form-control-label">Chi tiết sản phẩm: </label>
-                                                <textarea name="detail"><?= $model->detail; ?></textarea>
-                                                <script>
-                                                        CKEDITOR.replace( 'detail' );
-                                                </script>
+                                                <textarea name="detail" class="form-control" style="height:200px;"><?= $model->detail; ?></textarea>
                                                 <input type="hidden" name="updated_at" value="<?=date("Y-m-d"); ?>" >
                                                 </div>
-                                            
                                     </div>
                                     <div class="card-footer">
                                         <button class="btn btn-primary btn-sm">
@@ -427,7 +369,6 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                 </div>
             </div>
         </div>
-
     </div>
     <!-- Jquery JS-->
 

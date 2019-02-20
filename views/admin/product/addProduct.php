@@ -290,7 +290,7 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                                     <div class="card-body card-block">
                                             <div class="form-group">
                                                 <label class=" form-control-label">Tên sản phẩm :</label>
-                                                <input onchange="validate()" type="text" id="inputName" name="name" class="form-control">
+                                                <input onchange="validate()" type="text" id="inputName" name="name" class="form-control" placeholder="Nhập tên sản phẩm">
                                                 <br>
                                                 <br>
                                                 <label for="name" generated="true"  class="error"></label>
@@ -314,19 +314,19 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                                                 <label class=" form-control-label">Kích cỡ sản phẩm :</label>
                                                 <div id="boxCheckBox">
                                                 
-                                                <span>39</span> <input class="inputCheckbox" type="checkbox" name="size[]" value="39">
-                                                <span>40</span> <input class="inputCheckbox" type="checkbox" name="size[]" value="40">
-                                                <span>41</span> <input class="inputCheckbox" type="checkbox" name="size[]" value="41">        
-                                                <input class="inputCheckbox" type="checkbox" name="size[]" style="display:none;">
+                                                <span>39</span> <input class="inputCheckbox"  type="checkbox" name="size[]" value="39">
+                                                <span>40</span> <input class="inputCheckbox"  type="checkbox" name="size[]" value="40">
+                                                <span>41</span> <input class="inputCheckbox"  type="checkbox" name="size[]" value="41">        
+                                                <input class="inputCheckbox" type="checkbox"  style="display:none;">
                                                 <br>
-                                                <input type="text" id="numberChoose"  style="border:1px solid gray">
+                                                <input type="text" id="numberChoose" placeholder="Thêm tùy chọn kích cỡ" style="border:1px solid gray">
                                                
                                                 <button id="buttonCheckBoxSize" onclick="addSizeNumberCheckBox()" type="button">Thêm kích cỡ</button>
-                                               
+                                                
                                                 </div>
-                                                <span id="noticeCheckBoxSize" style="color:red;" ></span>
+                                                <label for="size[]" id="size[]-error" class="error"></label>
                                                 <br>
-                                                <label class=" form-control-label">Màu sản phẩm :</label>
+                                                <label class=" form-control-label">Màu sản phẩm : </label>
                                                 <div id="boxCheckBox2" >
                                                 
                                                 <span>Đỏ</span> <input class="inputCheckbox2" type="checkbox" name="color[]" value="Đỏ">
@@ -335,31 +335,31 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                                                 <input class="inputCheckbox2" type="checkbox" name="color[]" style="display:none;">
                                                 <br>
                                                 <input type="text" id="nameColor" style="border:1px solid gray">
-                                                <button onclick="addColorCheckBox()" type="button">Thêm loại màu</button>
+                                                <button onclick="addColorCheckBox()" type="button">Thêm loại màu : </button>
                                                 </div>
-                                                <span id="noticeCheckBoxColor" style="color:red;" ></span>
+                                                <label for="color[]" id="color[]-error" class="error"></label>
                                                 <br>
-                                                <label class=" form-control-label">Giá sản phẩm: </label>
+                                                <label class=" form-control-label">Giá sản phẩm : </label>
                                                 <input type="number" name="price" class="form-control">
                                                 <br>
-                                                <label class=" form-control-label">Mô tả ngắn: </label>
-                                                <textarea name="short_desc"></textarea>
-                                                <script>
-                                                        CKEDITOR.replace( 'short_desc' );
-                                                </script>
+                                                <label class=" form-control-label">Mô tả ngắn : </label>
+                                                <textarea name="short_desc" class="form-control" style="height:200px;"></textarea>
                                                 <br>
                                                 <label for="short_desc" generated="true"  class="error"></label>
                                                 <br>
                                                 <br>
-                                                <label class=" form-control-label">Chi tiết sản phẩm: </label>
-                                                <textarea name="detail"></textarea>
-                                                <script>
-                                                        CKEDITOR.replace( 'detail' );
-                                                </script>
+                                                <label class=" form-control-label">Chi tiết sản phẩm : </label>
+                                                <textarea name="detail" class="form-control" style="height:200px;"></textarea>
                                                 <label for="detail" generated="true"  class="error"></label>
                                                 <br>
                                                 <br>
                                                 <input type="hidden" name="created_at" value="<?= date("Y-m-d"); ?>">
+                                                <label for="">Trạng thái : </label>
+                                                <br>
+                                                <select name="status" class="form-control">
+                                                    <option value="0">Bản nháp</option>
+                                                    <option value="1">Đang hoạt động</option>
+                                                </select>
                                                 </div>
                                             
                                     </div>
@@ -446,6 +446,12 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                     detail:{
                         required: true,
                     },
+                    'size[]':{
+                        required: true,
+                    },
+                    'color[]':{
+                        required: true,
+                    }
                 },
                 messages:{
                     name: {
@@ -464,22 +470,12 @@ $user = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
                     detail:{
                         required: "* Vui lòng nhập chi tiết sản phẩm",
                     },
-                }
-            });
-        })
-        $(document).ready(function(){
-            $('#buttonCheckBoxSize').validate({
-                rules: {
-                    size:{
-                        required: true,
+                    'size[]':{
+                        required: "* Vui lòng chọn kích cỡ sản phẩm",
                     },
-                    
-                },
-                messages:{
-                    size: {
-                        required: "* Vui lòng nhập tên sản phẩm",
-                    },
-                   
+                    'color[]':{
+                        required: "* Vui lòng chọn màu sản phẩm",
+                    }
                 }
             });
         })
